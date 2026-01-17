@@ -81,26 +81,24 @@ X1_train, X1_test, y1_train, y1_test = train_test_split(X1, y1, test_size=0.2, s
 X2_train, X2_test, y2_train, y2_test = train_test_split(X2, y2, test_size=0.2, stratify=y2)
 
 # ランダムフォレストで学習
-clf1 = RandomForestClassifier(n_estimators=100, random_state=42)
-clf2 = RandomForestClassifier(n_estimators=100, random_state=42)
+clf1 = RandomForestClassifier(n_estimators=100, random_state=42, class_weight='balanced')
+clf2 = RandomForestClassifier(n_estimators=100, random_state=42, class_weight='balanced')
 clf1.fit(X1_train, y1_train)
 clf2.fit(X2_train, y2_train)
 
-# 精度確認
-# accuracy_1 = clf1.score(X1_test, y1_test)
-# accuracy_2 = clf2.score(X2_test, y2_test)
-# print(f"motion1 認証制度: {accuracy_1:.2%}")
-# print(f"motion2 認証制度: {accuracy_2:.2%}")
-
+# 検証
 y1_pred = clf1.predict(X1_test)
 y2_pred = clf2.predict(X2_test)
 
 print("--- Motion 1 Evaluation ---")
-print(classification_report(y1_test, y1_pred, target_names=persons_name))
+print(classification_report(y1_test, y1_pred, target_names=persons_name, zero_division=0))
 # 個別に数値として取得したい場合
 f1_motion1 = f1_score(y1_test, y1_pred, average='macro') # 全クラスの平均F値
 print(f"Motion 1 Macro F1-score: {f1_motion1:.4f}")
 
 # --- モーション2 (n2=2) の評価 ---
 print("\n--- Motion 2 Evaluation ---")
-print(classification_report(y2_test, y2_pred, target_names=persons_name))
+print(classification_report(y2_test, y2_pred, target_names=persons_name, zero_division=0))
+# 個別に数値として取得したい場合
+f1_motion2 = f1_score(y2_test, y2_pred, average='macro') # 全クラスの平均F値
+print(f"Motion 2 Macro F1-score: {f1_motion2:.4f}")

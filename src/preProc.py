@@ -27,7 +27,7 @@ def lowpass(data, cutoff=10, fs=50, order=4):
     )
     return processed_df
 
-def make_windows(data, window_size=50, overlap=30):
+def make_windows(data, window_size=50, overlap=25):
     print(f"Window size: {window_size}, Overlap: {overlap}", end="")
     segments = []
     for i in range(0, len(data) - window_size + 1, window_size - overlap):
