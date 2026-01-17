@@ -11,4 +11,3 @@ for person in persons_name:
             csv = ch.load_csv('r', person, n1, n2)
 
             # 前処理したデータをdata/procに保存
-            
