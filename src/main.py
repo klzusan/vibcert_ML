@@ -59,7 +59,7 @@ for person in persons_name:
 
 # ここまでで特徴量抽出完了
 
-# ラベル付け()
+# ラベル付け(ここから疲れたからテキトー)
 label_X1 = []
 label_X2 = []
 for i in range(0, 9):
