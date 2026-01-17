@@ -221,3 +221,11 @@ pip-selfcheck.json
 # End of https://www.toptal.com/developers/gitignore/api/macos,python,venv
 
 .vscode
+
+# Keep empty logs/ directory.
+/output_img/proc/*
+!/output_img/proc/.gitkeep
+/output_img/raw/*
+!/output_img/raw/.gitkeep
+/output_img/original/*
+!/output_img/original/.gitkeep
